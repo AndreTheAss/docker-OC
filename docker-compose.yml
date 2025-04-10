@@ -25,7 +25,7 @@ services:
 
   oc-phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: oc- phpmyadmin
+    container_name: oc-phpmyadmin
     environment:
       PMA_HOST: oc-mariadb
       PMA_PORT: 3306
@@ -48,4 +48,5 @@ services:
 
 volumes:
   oc-www:
+    external: true
   db_data:
