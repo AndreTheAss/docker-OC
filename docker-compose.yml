@@ -15,10 +15,10 @@ services:
     image: mariadb:latest
     container_name: oc-mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: Anfdre212Anfdre212
-      MYSQL_DATABASE: olympiccamp
-      MYSQL_USER: andre
-      MYSQL_PASSWORD: Anfdre212Anfdre212
+      MYSQL_ROOT_PASSWORD: DeineRootPasswort
+      MYSQL_DATABASE: DeineDatenbank
+      MYSQL_USER: DeinUser
+      MYSQL_PASSWORD: DeinDatenbankPasswort
     volumes:
       - db_data:/var/lib/mysql
     restart: always
@@ -41,9 +41,9 @@ services:
     ports:
       - "2222:22"
     volumes:
-      - oc-www:/home/andre/web
+      - oc-www:/home/oc_user/web
     environment:
-      SFTP_USERS: "andre:Anfdre212Anfdre212:1001:1001:web"
+      SFTP_USERS: "oc_user:DeinSftpPasswort:1001:1001:web"
     restart: always
 
 volumes:
