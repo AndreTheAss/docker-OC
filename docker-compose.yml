@@ -1,0 +1,51 @@
+version: "3.8"
+services:
+  apache-php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: oc-apache-php
+    ports:
+      - "81:80"
+    volumes:
+      - oc-www:/var/www/html
+    restart: always
+
+  mariadb:
+    image: mariadb:latest
+    container_name: oc-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: Anfdre212Anfdre212
+      MYSQL_DATABASE: rolandrauten
+      MYSQL_USER: andre
+      MYSQL_PASSWORD: Anfdre212Anfdre212
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: oc- phpmyadmin
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
+    depends_on:
+      - oc-mariadb
+    restart: always
+
+  sftp:
+    image: atmoz/sftp
+    container_name: oc-sftp
+    ports:
+      - "2222:22"
+    volumes:
+      - oc-www:/home/andre/web
+    environment:
+      SFTP_USERS: "andre:Anfdre212Anfdre212:1001:1001:web"
+    restart: always
+
+volumes:
+  www_data:
+  db_data:
