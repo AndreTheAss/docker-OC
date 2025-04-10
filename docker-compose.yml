@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  apache-php:
+  oc-apache-php:
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
       - oc-www:/var/www/html
     restart: always
 
-  mariadb:
+  oc-mariadb:
     image: mariadb:latest
     container_name: oc-mariadb
     environment:
@@ -23,11 +23,11 @@ services:
       - db_data:/var/lib/mysql
     restart: always
 
-  phpmyadmin:
+  oc-phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: oc- phpmyadmin
     environment:
-      PMA_HOST: mariadb
+      PMA_HOST: oc-mariadb
       PMA_PORT: 3306
     ports:
       - "8080:80"
@@ -35,7 +35,7 @@ services:
       - oc-mariadb
     restart: always
 
-  sftp:
+  oc-sftp:
     image: atmoz/sftp
     container_name: oc-sftp
     ports:
