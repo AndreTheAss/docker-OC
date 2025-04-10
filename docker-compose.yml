@@ -47,5 +47,5 @@ services:
     restart: always
 
 volumes:
-  www_data:
+  oc-www:
   db_data:
