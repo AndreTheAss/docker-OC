@@ -12,12 +12,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Arbeitsverzeichnis setzen
 WORKDIR /var/www/html
 
-# composer.json (und composer.lock, falls vorhanden) kopieren und Abhängigkeiten installieren
+# composer.json kopieren
 COPY composer.json ./
-# Falls vorhanden, die composer.lock-Datei kopieren:
-COPY composer.lock ./
 
-# Composer-Befehl mit erhöhtem Memory-Limit ausführen
+# Abhängigkeiten installieren (composer.lock wird hier nicht erwartet)
 RUN COMPOSER_MEMORY_LIMIT=-1 composer install --no-dev --optimize-autoloader
 
 # Restlichen Quellcode kopieren
