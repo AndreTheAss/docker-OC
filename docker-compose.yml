@@ -16,7 +16,7 @@ services:
     container_name: oc-mariadb
     environment:
       MYSQL_ROOT_PASSWORD: Anfdre212Anfdre212
-      MYSQL_DATABASE: rolandrauten
+      MYSQL_DATABASE: olympiccamp
       MYSQL_USER: andre
       MYSQL_PASSWORD: Anfdre212Anfdre212
     volumes:
