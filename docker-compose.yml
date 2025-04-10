@@ -1,9 +1,17 @@
 version: "3.8"
+
+volumes:
+  oc-www:
+    external: true
+  db_data:
+
 services:
   oc-apache-php:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        COMPOSER_MEMORY_LIMIT: -1
     container_name: oc-apache-php
     ports:
       - "81:80"
@@ -43,10 +51,5 @@ services:
     volumes:
       - oc-www:/home/oc_user/web
     environment:
-      SFTP_USERS: "oc_user:DeinSftpPasswort:1001:1001:web"
+      SFTP_USERS: "oc_user:Anfdre212Anfdre212:1001:1001:web"
     restart: always
-
-volumes:
-  oc-www:
-    external: true
-  db_data:
