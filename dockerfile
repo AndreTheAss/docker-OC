@@ -1,6 +1,6 @@
 FROM php:apache
 
-# Update und benötigte Pakete installieren (z. B. unzip, curl) und PHP-Erweiterungen, wie pdo_mysql
+# Update und benötigte Pakete installieren (z. B. unzip, curl) sowie PHP-Erweiterung pdo_mysql
 RUN apt-get update && apt-get install -y \
     unzip \
     curl \
@@ -12,11 +12,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Arbeitsverzeichnis setzen
 WORKDIR /var/www/html
 
-# composer.json kopieren und Abhängigkeiten installieren
+# composer.json (und composer.lock, falls vorhanden) kopieren und Abhängigkeiten installieren
 COPY composer.json ./
-RUN composer install --no-dev --optimize-autoloader
+# Falls vorhanden, die composer.lock-Datei kopieren:
+COPY composer.lock ./
+
+# Composer-Befehl mit erhöhtem Memory-Limit ausführen
+RUN COMPOSER_MEMORY_LIMIT=-1 composer install --no-dev --optimize-autoloader
 
 # Restlichen Quellcode kopieren
 COPY . .
-
-# Apache startet standardmäßig im Vordergrund (im php:apache Image bereits konfiguriert)
