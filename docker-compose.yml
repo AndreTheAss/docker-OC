@@ -10,8 +10,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        COMPOSER_MEMORY_LIMIT: -1
     container_name: oc-apache-php
     ports:
       - "81:80"
