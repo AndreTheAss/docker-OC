@@ -45,7 +45,7 @@ services:
     image: atmoz/sftp
     container_name: oc-sftp
     ports:
-      - "2222:22"
+      - "2223:22"
     volumes:
       - oc-www:/home/oc_user/web
     environment:
