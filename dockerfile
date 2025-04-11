@@ -13,9 +13,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Arbeitsverzeichnis setzen
 WORKDIR /var/www/html
 
-# composer.json kopieren und Abhängigkeiten installieren
-COPY composer.json ./
-RUN COMPOSER_MEMORY_LIMIT=-1 composer install --no-dev --optimize-autoloader -vvv
-
 # Restlichen Quellcode kopieren
 COPY . .
