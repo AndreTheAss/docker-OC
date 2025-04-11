@@ -12,7 +12,7 @@ services:
       dockerfile: Dockerfile
     container_name: oc-apache-php
     ports:
-      - "81:80"
+      - "83:80"
     volumes:
       - oc-www:/var/www/html
     restart: always
@@ -36,7 +36,7 @@ services:
       PMA_HOST: oc-mariadb
       PMA_PORT: 3306
     ports:
-      - "8080:80"
+      - "8081:80"
     depends_on:
       - oc-mariadb
     restart: always
