@@ -12,7 +12,7 @@ services:
       dockerfile: Dockerfile
     container_name: oc-apache-php
     ports:
-      - "83:80"
+      - "83:80"          # Host-Port jetzt 83
     volumes:
       - oc-www:/var/www/html
     restart: always
@@ -36,7 +36,7 @@ services:
       PMA_HOST: oc-mariadb
       PMA_PORT: 3306
     ports:
-      - "8081:80"
+      - "8080:80"
     depends_on:
       - oc-mariadb
     restart: always
@@ -49,5 +49,5 @@ services:
     volumes:
       - oc-www:/home/oc_user/web
     environment:
-      SFTP_USERS: "oc_user:Anfdre212Anfdre212:1001:1001:web"
+      SFTP_USERS: "oc_user:Anfdre212Anfdre212:1001:33:web"
     restart: always
